@@ -1,0 +1,65 @@
+version: 1
+services:
+  # Configuration du service n8n avec une base de données Supabase externe
+  - type: web
+    name: n8n-supabase
+    env: docker
+    region: frankfurt # optional, you can try London or another
+    branch: main # optional (defaults to master)
+    plan: free
+    numInstances: 1
+    # Utilisation de l'image officielle
+    image: n8nio/n8n:latest
+    
+    # Configuration du port pour Render
+    envVars:
+      - key: N8N_PORT
+        value: 5678
+      
+      # Génération automatique d'une clé de chiffrement
+      - key: N8N_ENCRYPTION_KEY
+        generateValue: true
+
+      # Configuration Base de données (Supabase)
+      - key: DB_TYPE
+        value: postgresdb
+      - key: DB_POSTGRESDB_SCHEMA
+        value: public
+      - key: DB_POSTGRESDB_PORT
+        value: 5432
+      - key: DB_POSTGRESDB_DATABASE
+        value: postgres
+      - key: DB_POSTGRESDB_USER
+        value: postgres
+      
+      # Les valeurs suivantes seront demandées lors du déploiement
+      - key: DB_POSTGRESDB_HOST
+        sync: false
+      - key: DB_POSTGRESDB_PASSWORD
+        sync: false
+      
+      # Autres variables d'environnement n8n
+      - key: N8N_PROTOCOL
+        value: https
+      - key: N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS
+        value: true
+      - key: N8N_RUNNERS_ENABLED
+        value: true
+      - key: N8N_DEFAULT_LOCALE
+        value: fr
+      - key: N8N_LOG_LEVEL
+        value: info
+      - key: GENERIC_TIMEZONE
+        value: Europe/Paris
+      - key: TZ
+        value: Europe/Paris
+      
+      # URL du Webhook (à mettre à jour après le premier déploiement)
+      - key: WEBHOOK_URL
+        sync: false
+
+    # Port exposé par le conteneur
+    port: 5678
+    
+    # Vérification de santé pour s'assurer que n8n a démarré
+    healthCheckPath: /healthz

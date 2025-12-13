@@ -8,8 +8,6 @@ services:
     branch: main # optional (defaults to master)
     plan: free
     numInstances: 1
-    # Utilisation de l'image officielle
-    image: n8nio/n8n:latest
     
     # Configuration du port pour Render
     envVars:
@@ -57,9 +55,6 @@ services:
       # URL du Webhook (à mettre à jour après le premier déploiement)
       - key: WEBHOOK_URL
         sync: false
-
-    # Port exposé par le conteneur
-    port: 5678
     
     # Vérification de santé pour s'assurer que n8n a démarré
     healthCheckPath: /healthz

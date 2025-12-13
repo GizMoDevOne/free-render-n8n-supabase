@@ -1,6 +1,17 @@
-![cloud-automation-and-database.webp](img/cloud-automation-and-database.webp)
+<h1 align="center">
+Guide complet : Installer n8n gratuitement avec Render & Supabase
+</h1>
 
-# Guide complet : Installer n8n gratuitement avec Render & Supabase
+<p align="center">
+  <a href="https://saythanks.io/to/GizMoDevOne" target="_blank">
+    <img src="https://img.shields.io/badge/SayThanks.io-%E2%98%BC-1EAEDB.svg">
+  </a>
+  <a href="https://www.paypal.me/GizMoDevOne" target="_blank">
+    <img src="https://img.shields.io/badge/$-donate-ff69b4.svg?maxAge=2592000&amp;style=flat">
+  </a>
+</p>
+
+![cloud-automation-and-database.webp](img/cloud-automation-and-database.webp)
 
 Ce tutoriel vous guidera dans l'installation de n8n, un puissant outil d'automatisation open-source, en utilisant uniquement des services gratuits. Nous allons combiner Render.com pour héberger l'application n8n et Supabase pour la base de données PostgreSQL. Cette configuration vous permettra d'avoir une instance n8n fonctionnelle sans dépenser un centime ni frais mensuels.
 
@@ -229,3 +240,24 @@ Si vous voyez une erreur du type "Connection refused" ou "ECONNREFUSED", cela si
 Félicitations, vous avez maintenant une instance n8n entièrement fonctionnelle et gratuite. Vous pouvez commencer à créer vos premiers workflows d'automatisation, connecter vos applications préférées et laisser n8n gérer vos tâches répétitives.
 
 Cette configuration gratuite est parfaite pour apprendre, tester et automatiser vos tâches personnelles. Si vos besoins évoluent vers un usage professionnel intensif, vous pourrez toujours migrer vers des plans payants offrant plus de ressources et une meilleure disponibilité.
+
+## Auteur
+
+[@GizMoDevOne](https://github.com/GizMoDevOne)
+
+## A propos
+Je suis un humble développeur web, passionné de musique, de cinéma et... de technologie. J'aime créer des applications innovantes et conviviales qui ont un impact positif sur la vie des gens. 
+
+## Remerciements
+
+- Merci à tous les contributeurs et utilisateurs qui ont fourni des retours et des suggestions.
+
+## Offrez-moi un café
+
+Que vous utilisiez ce projet, ayez appris quelque chose grâce à lui, ou que vous l'aimiez simplement, pensez à le soutenir en m'offrant un café, afin que je puisse consacrer plus de temps à des projets open-source comme celui-ci. :)
+
+<a href="https://www.buymeacoffee.com/GizMoDevOne" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: auto !important;width: auto !important;"></a>
+
+## Montrez votre soutien
+
+Merci de donner une étoile ⭐️ à ce dépôt si ce projet vous a aidé !

@@ -115,12 +115,13 @@ C'est l'étape la plus critique. Sans cela, n8n ne saura pas comment parler à S
 Dans la section **Environment Variables** sur Render, cliquez sur **"Add Environment Variable"** et ajoutez les clés/valeurs suivantes :
 
 ### A. Configuration de base
-| Key                  | Value               | Description                             |
-| :------------------- | :------------------ | :-------------------------------------- |
-| `N8N_PORT`           | `5678`              | Render écoute sur ce port par défaut    |
-| `N8N_PROTOCOL`       | `https`             | Pour avoir une connexion sécurisée      |
-| `GENERIC_TIMEZONE`   | `Europe/Paris`      | Pour avoir la bonne heure dans vos logs |
-| `N8N_ENCRYPTION_KEY` | *(voir ci-dessous)* | **TRÈS IMPORTANT**                      |
+| Key                   | Value               | Description                             |
+| :-------------------- | :------------------ | :-------------------------------------- |
+| `N8N_PORT`            | `5678`              | Render écoute sur ce port par défaut    |
+| `N8N_PROTOCOL`        | `https`             | Pour avoir une connexion sécurisée      |
+| `GENERIC_TIMEZONE`    | `Europe/Paris`      | Pour avoir la bonne heure dans vos logs |
+| `N8N_ENABLED_MODULES` | `chat-hub`          | Pour avoir la fonctionnaliité de chat   |
+| `N8N_ENCRYPTION_KEY`  | *(voir ci-dessous)* | **TRÈS IMPORTANT**                      |
 
 > **⚠️ Générer la clé de chiffrement (N8N_ENCRYPTION_KEY) :**
 > Générez une chaîne aléatoire complexe (alphanumérique).
@@ -155,6 +156,7 @@ Voici un récapitulatif complet des variables à configurer :
 N8N_PORT=5678
 N8N_PROTOCOL=https
 GENERIC_TIMEZONE=Europe/Paris
+N8N_ENABLED_MODULES=chat-hub
 N8N_ENCRYPTION_KEY=votre-clé-aléatoire-de-32-caractères
 DB_TYPE=postgresdb
 DB_POSTGRESDB_HOST=db.xxxxxxxxxxxxx.supabase.co

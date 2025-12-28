@@ -120,7 +120,7 @@ Dans la section **Environment Variables** sur Render, cliquez sur **"Add Environ
 | `N8N_PORT`            | `5678`              | Render écoute sur ce port par défaut    |
 | `N8N_PROTOCOL`        | `https`             | Pour avoir une connexion sécurisée      |
 | `GENERIC_TIMEZONE`    | `Europe/Paris`      | Pour avoir la bonne heure dans vos logs |
-| `N8N_ENABLED_MODULES` | `chat-hub`          | Pour avoir la fonctionnaliité de chat   |
+| `N8N_ENABLED_MODULES` | `chat-hub`          | Pour avoir la fonctionnalité de chat    |
 | `N8N_ENCRYPTION_KEY`  | *(voir ci-dessous)* | **TRÈS IMPORTANT**                      |
 
 > **⚠️ Générer la clé de chiffrement (N8N_ENCRYPTION_KEY) :**

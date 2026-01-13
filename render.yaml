@@ -38,7 +38,7 @@ services:
       - key: DB_POSTGRESDB_HOST
         sync: false
       - key: DB_POSTGRESDB_USER
-        value: false
+        sync: false
       - key: DB_POSTGRESDB_PASSWORD
         sync: false
       

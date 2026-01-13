@@ -33,12 +33,12 @@ services:
         value: 5432
       - key: DB_POSTGRESDB_DATABASE
         value: postgres
-      - key: DB_POSTGRESDB_USER
-        value: postgres
       
       # Les valeurs suivantes seront demandées lors du déploiement
       - key: DB_POSTGRESDB_HOST
         sync: false
+      - key: DB_POSTGRESDB_USER
+        value: false
       - key: DB_POSTGRESDB_PASSWORD
         sync: false
       

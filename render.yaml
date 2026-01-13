@@ -11,8 +11,14 @@ services:
     
     # Configuration du port pour Render
     envVars:
+      - key: PORT
+        value: 5678
       - key: N8N_PORT
         value: 5678
+
+      # Indispensable pour Supabase
+      - key: DB_POSTGRESDB_SSL_REJECT_UNAUTHORIZED
+        value: false
       
       # Génération automatique d'une clé de chiffrement
       - key: N8N_ENCRYPTION_KEY
@@ -57,6 +63,3 @@ services:
       # URL du Webhook (à mettre à jour après le premier déploiement)
       - key: WEBHOOK_URL
         sync: false
-    
-    # Vérification de santé pour s'assurer que n8n a démarré
-    healthCheckPath: /healthz

@@ -48,19 +48,21 @@ n8n a besoin d'une base de données pour sauvegarder vos workflows, votre histor
 5.  Attendez quelques minutes que la base de données soit prête.
 6.  Une fois prête, allez dans votre projet `n8n-db` et dans la barre supérieur cliquez sur le bouton **Connect**.
 ![Supabase-connect.png](img/supabase-connect.png)
-7.  Vous trouverez dans cette modale une section appelée `Connection string`. C'est exactement ce dont nous avons besoin. Cherchez la chaîne de connexion intitulée **URI** ou **Direct connection**. Vous verrez quelque chose qui ressemble à ceci :
+1.  Vous trouverez dans cette modale une section appelée `Connection string`. C'est exactement ce dont nous avons besoin. Sélectionnez la méthode de connection adéquate **Transaction pooler**. Vous verrez quelque chose qui ressemble à ceci :
 ![Supabase-uri.png](img/supabase-uri.png)
 ```
-postgresql://postgres:[YOUR-PASSWORD]@db.xxxxxxxxxxxxx.supabase.co:5432/postgres
+postgresql://postgres.cwfnmeqwmuwdajigntem:[YOUR-PASSWORD]@aws-1-XXXXXX.pooler.supabase.com:6543/postgres
 ```
 Cliquez sur le bouton pour copier cette URL. Notez bien que dans cette chaîne, il y a un placeholder `[YOUR-PASSWORD]` que vous devrez remplacer par le mot de passe que vous avez créé à l'étape précédente. Gardez cette URL modifiée à portée de main, elle sera essentielle pour la prochaine étape.
 
 Si vous cliquez sur **View parameters**, vous devriez voir quelquechose comme cela :
 
-    *   **Host** (ex: `db.xxxxxxxx.supabase.co`)
-    *   **User** (généralement `postgres`)
-    *   **Port** (généralement `5432`)
-    *   **Database Name** (généralement `postgres`)
+    *   **Host** (ex: `aws-1-XXXXXX.pooler.supabase.com.co`)
+    *   **Port** (généralement `6543`)
+    *   **Database** (généralement `postgres`)
+    *   **User** (généralement postgres suivi d'une chaine de caractères : `postgres.cwfnmeqwmuwdajigntem`)
+    *   **pool_mode** : transaction
+    
 
 ---
 
@@ -83,6 +85,8 @@ Cette méthode utilise un fichier de configuration "Infrastructure as Code" pour
 2. **Remplir les informations** : Render va détecter le fichier et vous demander de remplir les 3 valeurs manquantes à l'écran :
 
 - DB_POSTGRESDB_HOST : L'hôte récupéré à l'étape 1 sur Supabase.
+
+- DB_POSTGRESDB_USER : L'utilisateur récupéré à l'étape 1 sur Supabase.
 
 - DB_POSTGRESDB_PASSWORD : Le mot de passe de votre base de données.
 
@@ -117,7 +121,8 @@ Dans la section **Environment Variables** sur Render, cliquez sur **"Add Environ
 ### A. Configuration de base
 | Key                   | Value               | Description                             |
 | :-------------------- | :------------------ | :-------------------------------------- |
-| `N8N_PORT`            | `5678`              | Render écoute sur ce port par défaut    |
+| `PORT`                | `5678`              | Render écoute sur ce port par défaut    |
+| `N8N_PORT`            | `5678`              | n8n écoute sur ce port par défaut       |
 | `N8N_PROTOCOL`        | `https`             | Pour avoir une connexion sécurisée      |
 | `GENERIC_TIMEZONE`    | `Europe/Paris`      | Pour avoir la bonne heure dans vos logs |
 | `N8N_ENABLED_MODULES` | `chat-hub`          | Pour avoir la fonctionnalité de chat    |
@@ -131,15 +136,16 @@ Dans la section **Environment Variables** sur Render, cliquez sur **"Add Environ
 ### B. Connexion à Supabase (PostgreSQL)
 Utilisez les infos notées à l'Étape 1.
 
-| Key                      | Value                                                    |
-| :----------------------- | :------------------------------------------------------- |
-| `DB_TYPE`                | `postgresdb`                                             |
-| `DB_POSTGRESDB_HOST`     | *Votre Host Supabase* (ex: `db.RefDuProjet.supabase.co`) |
-| `DB_POSTGRESDB_PORT`     | `5432`                                                   |
-| `DB_POSTGRESDB_DATABASE` | `postgres`                                               |
-| `DB_POSTGRESDB_USER`     | `postgres`                                               |
-| `DB_POSTGRESDB_PASSWORD` | *Le mot de passe créé à l'étape 1*                       |
-| `DB_POSTGRESDB_SCHEMA`   | `public`                                                 |
+| Key                                     | Value                                                          |
+| :-------------------------------------- | :------------------------------------------------------------- |
+| `DB_POSTGRESDB_SSL_REJECT_UNAUTHORIZED` | `false`                                                        |
+| `DB_TYPE`                               | `postgresdb`                                                   |
+| `DB_POSTGRESDB_HOST`                    | *Votre Host Supabase* (ex: `aws-1-XXXXXX.pooler.supabase.com`) |
+| `DB_POSTGRESDB_PORT`                    | `6543`                                                         |
+| `DB_POSTGRESDB_DATABASE`                | `postgres`                                                     |
+| `DB_POSTGRESDB_USER`                    | *Le username de l'étape 1*                                     |
+| `DB_POSTGRESDB_PASSWORD`                | *Le mot de passe créé à l'étape 1*                             |
+| `DB_POSTGRESDB_SCHEMA`                  | `public`                                                       |
 
 ### C. Configuration Webhook (Optionnel mais recommandé)
 Pour que les webhooks fonctionnent correctement, n8n doit connaître sa propre URL. Comme nous n'avons pas encore l'URL finale, vous pouvez revenir ici après le déploiement, ou deviner l'URL qui sera souvent : `https://<nom-de-votre-service>.onrender.com`.
@@ -153,16 +159,18 @@ Pour que les webhooks fonctionnent correctement, n8n doit connaître sa propre U
 Voici un récapitulatif complet des variables à configurer :
 
 ```
+PORT=5678
 N8N_PORT=5678
 N8N_PROTOCOL=https
 GENERIC_TIMEZONE=Europe/Paris
 N8N_ENABLED_MODULES=chat-hub
 N8N_ENCRYPTION_KEY=votre-clé-aléatoire-de-32-caractères
+DB_POSTGRESDB_SSL_REJECT_UNAUTHORIZED=false
 DB_TYPE=postgresdb
-DB_POSTGRESDB_HOST=db.xxxxxxxxxxxxx.supabase.co
-DB_POSTGRESDB_PORT=5432
+DB_POSTGRESDB_HOST=aws-1-XXXXXX.pooler.supabase.com
+DB_POSTGRESDB_PORT=6543
 DB_POSTGRESDB_DATABASE=postgres
-DB_POSTGRESDB_USER=postgres
+DB_POSTGRESDB_USER=votre-user-supabase
 DB_POSTGRESDB_PASSWORD=votre-mot-de-passe-supabase
 DB_POSTGRESDB_SCHEMA=public
 WEBHOOK_URL=https://votre-nom-service.onrender.com

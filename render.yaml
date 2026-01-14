@@ -2,7 +2,7 @@ version: 1
 services:
   # Configuration du service n8n avec une base de données Supabase externe
   - type: web
-    name: n8n-supabase
+    name: n8n
     env: docker
     region: frankfurt # optional, you can try London or another
     branch: main # optional (defaults to master)

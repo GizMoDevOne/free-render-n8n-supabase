@@ -47,8 +47,6 @@ services:
         value: https
       - key: N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS
         value: true
-      - key: N8N_RUNNERS_ENABLED
-        value: true
       - key: N8N_DEFAULT_LOCALE
         value: fr
       - key: N8N_LOG_LEVEL

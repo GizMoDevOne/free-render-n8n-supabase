@@ -147,7 +147,14 @@ Utilisez les infos notées à l'Étape 1.
 | `DB_POSTGRESDB_PASSWORD`                | *Le mot de passe créé à l'étape 1*                             |
 | `DB_POSTGRESDB_SCHEMA`                  | `public`                                                       |
 
-### C. Configuration Webhook (Optionnel mais recommandé)
+### C. Stabilité et Proxy
+| Key                          | Value   | Description                                          |
+| :--------------------------- | :------ | :--------------------------------------------------- |
+| `N8N_PUSH_BACKEND`           | `sse`   | Utilise Server-Sent Events (compatible Render)       |
+| `N8N_BLOCK_XMLHTTPREQUESTS`  | `false` | Autorise les requêtes XHR depuis le navigateur       |
+| `N8N_PROXY_HOPS`             | `1`     | Indique à n8n qu'il est derrière 1 reverse proxy     |
+
+### D. Configuration Webhook (Optionnel mais recommandé)
 Pour que les webhooks fonctionnent correctement, n8n doit connaître sa propre URL. Comme nous n'avons pas encore l'URL finale, vous pouvez revenir ici après le déploiement, ou deviner l'URL qui sera souvent : `https://<nom-de-votre-service>.onrender.com`.
 
 | Key           | Value                                     |
@@ -173,7 +180,10 @@ DB_POSTGRESDB_DATABASE=postgres
 DB_POSTGRESDB_USER=votre-user-supabase
 DB_POSTGRESDB_PASSWORD=votre-mot-de-passe-supabase
 DB_POSTGRESDB_SCHEMA=public
-WEBHOOK_URL=https://votre-nom-service.onrender.com
+N8N_PUSH_BACKEND=sse
+N8N_BLOCK_XMLHTTPREQUESTS=false
+N8N_PROXY_HOPS=1
+WEBHOOK_URL=https://votre-nom-service.onrender.com/
 ```
 
 ---
